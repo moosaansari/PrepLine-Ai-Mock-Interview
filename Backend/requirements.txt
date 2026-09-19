@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+pydantic
+pydantic-settings
+python-dotenv
+firebase-admin
+requests
+google-genai>=2.23.0,<3
+email-validator

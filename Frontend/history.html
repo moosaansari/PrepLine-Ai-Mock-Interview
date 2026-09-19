@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0f1a" />
+    <title>Prepline — Past Interviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+
+    <style id="prepline-dark-blue-theme">
+      html,
+      body {
+        background: #0a0f1a !important;
+        color: #e2e8f0 !important;
+      }
+      body {
+        font-family: "Source Sans 3", Inter, system-ui, sans-serif !important;
+      }
+      nav,
+      .nav,
+      .interview-nav,
+      .history-nav {
+        background: rgba(10, 15, 26, 0.92) !important;
+        border-color: #1e293b !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28) !important;
+      }
+      .nav a,
+      .nav-links a,
+      .nav-brand,
+      .mobile-menu a,
+      .history-nav a {
+        color: #f1f5f9 !important;
+      }
+      .nav-links a:hover,
+      .mobile-menu a:hover,
+      .history-nav a:hover {
+        color: #60a5fa !important;
+      }
+      .card,
+      .history-card,
+      .empty-card,
+      .section-card,
+      .question-item,
+      .interview-shell,
+      .interview-aside,
+      .report-card {
+        background: #111827 !important;
+        color: #e2e8f0 !important;
+        border-color: #1e293b !important;
+      }
+      input,
+      select,
+      textarea {
+        background: #0d1421 !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+      }
+      button.primary,
+      .btn,
+      .primary-btn,
+      .history-cta,
+      #recordBtn {
+        background: linear-gradient(
+          180deg,
+          #60a5fa 0%,
+          #3b82f6 55%,
+          #1d4ed8 100%
+        ) !important;
+        color: #ffffff !important;
+        border-color: #3b82f6 !important;
+      }
+      .ghost-btn,
+      .secondary-btn {
+        background: transparent !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      .muted,
+      .sub,
+      .subtitle,
+      .history-subtitle,
+      .body-copy,
+      .tiny,
+      .switch,
+      .back,
+      .section-head p,
+      .feature p,
+      .steps p {
+        color: #94a3b8 !important;
+      }
+      .eyebrow,
+      .accent,
+      .report-arrow,
+      .question-score {
+        color: #60a5fa !important;
+      }
+      footer {
+        background: #0a0f1a !important;
+        border-color: #1e293b !important;
+        color: #64748b !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-[#0a0f1a] text-white font-['Source_Sans_3',Inter,sans-serif]"
+  >
+    <div class="noise"></div>
+
+    <header
+      class="h-20 border-b border-white/5 flex items-center justify-between px-5 lg:px-10 history-nav"
+    >
+      <a href="index.html" class="text-xl font-extrabold tracking-tight">
+        PREP<span class="text-blue-400">LINE</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:block text-right">
+          <div class="text-[10px] tracking-widest text-gray-500">
+            PAST SESSIONS
+          </div>
+          <div id="pageTitle" class="text-sm font-semibold">History</div>
+        </div>
+        <a
+          href="index.html"
+          class="px-4 py-2 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition"
+        >
+          Home
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-5 py-8 interview-main">
+      <div
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6"
+      >
+        <div>
+          <div
+            class="text-xs uppercase tracking-[.2em] text-blue-400 font-semibold"
+          >
+            Your Sessions
+          </div>
+          <h1 class="text-2xl md:text-3xl font-bold mt-1">Past Interviews</h1>
+          <p class="text-sm text-gray-400 mt-1">
+            Review every session you've completed with PREPLINE.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            id="filterBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition flex items-center gap-2"
+          >
+            <i class="fas fa-filter text-xs"></i> Filter
+          </button>
+          <button
+            id="sortBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition flex items-center gap-2"
+          >
+            <i class="fas fa-sort text-xs"></i> Sort
+          </button>
+        </div>
+      </div>
+
+      <div id="filterBar" class="hidden mb-5 flex flex-wrap gap-2 items-center">
+        <span class="text-xs text-gray-500 mr-1">Type:</span>
+        <button
+          type="button"
+          class="filter-chip active px-3 py-1.5 rounded-lg text-xs font-medium border border-blue-500/40 bg-blue-500/10 text-blue-300 transition"
+          data-filter="all"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="Technical"
+        >
+          Technical
+        </button>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="Behavioral"
+        >
+          Behavioral
+        </button>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="HR"
+        >
+          HR
+        </button>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="Mixed"
+        >
+          Mixed
+        </button>
+        <span class="w-px h-5 bg-white/10 mx-2"></span>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="Completed"
+        >
+          Completed
+        </button>
+        <button
+          type="button"
+          class="filter-chip px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-gray-400 hover:bg-white/5 transition"
+          data-filter="Partial"
+        >
+          Partial
+        </button>
+      </div>
+
+      <div id="historyList" class="space-y-4"></div>
+
+      <div
+        id="emptyState"
+        class="hidden rounded-3xl p-12 md:p-16 text-center border border-white/5 bg-[#111827]/60"
+      >
+        <div
+          class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"
+        >
+          <i class="fas fa-clock text-blue-400 text-2xl"></i>
+        </div>
+        <h2 class="text-xl font-bold mb-2">No sessions yet</h2>
+        <p class="text-sm text-gray-400 max-w-md mx-auto mb-6">
+          You haven't completed any interviews. Start your first practice
+          session and your history will appear here.
+        </p>
+        <a
+          href="index.html"
+          class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold transition hover:opacity-90"
+          style="background: #3b82f6; color: #ffffff"
+        >
+          Start your first interview
+          <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+
+      <div
+        id="loadingState"
+        class="rounded-3xl p-12 md:p-16 text-center border border-white/5 bg-[#111827]/60"
+      >
+        <div
+          class="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-blue-500/30 border-t-blue-500 animate-spin"
+        ></div>
+        <div class="text-base font-semibold" style="color: #e2e8f0">
+          Loading your sessions
+        </div>
+        <div class="text-sm mt-1" style="color: #94a3b8">
+          PREPLINE is gathering your interview history
+        </div>
+      </div>
+
+      <div
+        id="errorState"
+        class="hidden rounded-3xl p-8 md:p-10 text-center border border-red-500/15 bg-red-500/5"
+      >
+        <div class="text-3xl mb-3">&#9888;</div>
+        <div class="text-lg font-semibold" style="color: #f1f5f9">
+          Could not load your history
+        </div>
+        <p id="errorText" class="text-sm mt-2" style="color: #94a3b8">
+          Something went wrong. Please try again.
+        </p>
+        <div class="flex justify-center gap-3 mt-5">
+          <button
+            id="retryBtn"
+            type="button"
+            class="inline-flex items-center rounded-xl px-5 py-2.5 text-sm font-semibold transition"
+            style="background: #3b82f6; color: #ffffff"
+          >
+            <i class="fas fa-redo mr-2"></i>Retry
+          </button>
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-xl px-5 py-2.5 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+          >
+            Go Home
+          </a>
+        </div>
+      </div>
+
+      <div id="loadMoreWrap" class="hidden mt-6 text-center">
+        <button
+          id="loadMoreBtn"
+          type="button"
+          class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+        >
+          <i class="fas fa-chevron-down mr-2"></i>Load more sessions
+        </button>
+      </div>
+    </main>
+
+    <footer
+      class="border-t border-white/5 py-8 px-5 lg:px-10 flex justify-between items-center gap-4 flex-wrap"
+      style="background: #0a0f1a"
+    >
+      <a href="index.html" class="text-lg font-extrabold tracking-tight">
+        PREP<span class="text-blue-400">LINE</span>
+      </a>
+      <span class="text-xs" style="color: #64748b">
+        &copy; 2026 Prepline. All rights reserved.
+      </span>
+      <div class="flex gap-6">
+        <a
+          href="index.html"
+          class="text-xs transition hover:text-white"
+          style="color: #94a3b8"
+          >Home</a
+        >
+        <a
+          href="history.html"
+          class="text-xs transition hover:text-white"
+          style="color: #94a3b8"
+          >History</a
+        >
+        <a
+          href="index.html"
+          class="text-xs transition hover:text-white"
+          style="color: #94a3b8"
+          >Start Interview</a
+        >
+      </div>
+    </footer>
+
+    <style>
+      .history-card {
+        border-radius: 20px;
+        padding: 22px 24px;
+        transition:
+          transform 0.22s cubic-bezier(0.22, 0.68, 0, 1),
+          box-shadow 0.22s ease,
+          border-color 0.22s ease;
+        cursor: default;
+      }
+      .history-card:hover {
+        transform: translateY(-3px);
+        border-color: #2f3f5c !important;
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(59, 130, 246, 0.1);
+      }
+      .history-card .score-ring {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: Manrope, sans-serif;
+        letter-spacing: -0.03em;
+        flex-shrink: 0;
+      }
+      .history-card .score-ring.high {
+        background: rgba(34, 197, 94, 0.12);
+        color: #22c55e;
+        border: 2px solid rgba(34, 197, 94, 0.25);
+      }
+      .history-card .score-ring.mid {
+        background: rgba(245, 158, 11, 0.12);
+        color: #f59e0b;
+        border: 2px solid rgba(245, 158, 11, 0.25);
+      }
+      .history-card .score-ring.low {
+        background: rgba(239, 68, 68, 0.12);
+        color: #ef4444;
+        border: 2px solid rgba(239, 68, 68, 0.25);
+      }
+      .history-card .score-ring.na {
+        background: rgba(100, 116, 139, 0.12);
+        color: #94a3b8;
+        border: 2px solid rgba(100, 116, 139, 0.2);
+      }
+      .history-card .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid;
+      }
+      .history-card .tag.completed {
+        color: #22c55e;
+        border-color: rgba(34, 197, 94, 0.25);
+        background: rgba(34, 197, 94, 0.08);
+      }
+      .history-card .tag.partial {
+        color: #f59e0b;
+        border-color: rgba(245, 158, 11, 0.25);
+        background: rgba(245, 158, 11, 0.08);
+      }
+      .history-card .tag.technical {
+        color: #60a5fa;
+        border-color: rgba(96, 165, 250, 0.25);
+        background: rgba(96, 165, 250, 0.08);
+      }
+      .history-card .tag.behavioral {
+        color: #c084fc;
+        border-color: rgba(192, 132, 252, 0.25);
+        background: rgba(192, 132, 252, 0.08);
+      }
+      .history-card .tag.hr {
+        color: #f472b6;
+        border-color: rgba(244, 114, 182, 0.25);
+        background: rgba(244, 114, 182, 0.08);
+      }
+      .history-card .tag.mixed {
+        color: #e2e8f0;
+        border-color: rgba(226, 232, 240, 0.2);
+        background: rgba(226, 232, 240, 0.06);
+      }
+      .history-card .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .history-card .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.18s cubic-bezier(0.22, 0.68, 0, 1);
+        border: 1px solid transparent;
+      }
+      .history-card .action-btn:hover {
+        transform: translateY(-2px);
+      }
+      .history-card .action-btn.primary {
+        background: linear-gradient(
+          180deg,
+          #60a5fa 0%,
+          #3b82f6 55%,
+          #1d4ed8 100%
+        );
+        color: #ffffff;
+        box-shadow:
+          0 4px 0 #1d4ed8,
+          0 6px 14px rgba(59, 130, 246, 0.28);
+      }
+      .history-card .action-btn.primary:hover {
+        box-shadow:
+          0 6px 0 #1d4ed8,
+          0 10px 22px rgba(59, 130, 246, 0.42);
+      }
+      .history-card .action-btn.secondary {
+        background: rgba(47, 63, 92, 0.3);
+        color: #e2e8f0;
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+      .history-card .action-btn.secondary:hover {
+        border-color: #3b82f6;
+        color: #60a5fa;
+      }
+      .history-card .action-btn.danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #fca5a5;
+        border-color: rgba(239, 68, 68, 0.15);
+      }
+      .history-card .action-btn.danger:hover {
+        background: rgba(239, 68, 68, 0.18);
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+      .history-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #94a3b8;
+      }
+      .history-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .filter-chip {
+        transition: all 0.18s ease;
+      }
+      .filter-chip.active {
+        background: rgba(59, 130, 246, 0.1) !important;
+        border-color: rgba(59, 130, 246, 0.4) !important;
+        color: #60a5fa !important;
+      }
+
+      @media (max-width: 640px) {
+        .history-card {
+          padding: 16px 18px;
+        }
+        .history-card .actions {
+          flex-direction: column;
+        }
+        .history-card .action-btn {
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    </style>
+
+    <script>
+      "use strict";
+
+      const API_BASE_URL = window.API_BASE_URL;
+
+      const interviewId = localStorage.getItem("prepline_last_interview_id");
+
+      let allSessions = [];
+      let filteredSessions = [];
+      let currentFilter = "all";
+      let sortOrder = "newest";
+      let isLoading = false;
+      let page = 1;
+      const pageSize = 10;
+
+      const historyList = document.getElementById("historyList");
+      const emptyState = document.getElementById("emptyState");
+      const loadingState = document.getElementById("loadingState");
+      const errorState = document.getElementById("errorState");
+      const errorText = document.getElementById("errorText");
+      const retryBtn = document.getElementById("retryBtn");
+      const filterBar = document.getElementById("filterBar");
+      const filterBtn = document.getElementById("filterBtn");
+      const sortBtn = document.getElementById("sortBtn");
+      const loadMoreWrap = document.getElementById("loadMoreWrap");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const pageTitle = document.getElementById("pageTitle");
+
+      function friendlyDate(dateStr) {
+        if (!dateStr) return "Unknown date";
+        try {
+          const d = new Date(dateStr);
+          if (isNaN(d.getTime())) return dateStr;
+          return d.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          });
+        } catch {
+          return dateStr;
+        }
+      }
+
+      function friendlyTimeAgo(dateStr) {
+        if (!dateStr) return "";
+        try {
+          const now = new Date();
+          const d = new Date(dateStr);
+          const ms = now - d;
+          const mins = Math.floor(ms / 60000);
+          if (mins < 1) return "just now";
+          if (mins < 60) return `${mins}m ago`;
+          const hours = Math.floor(mins / 60);
+          if (hours < 24) return `${hours}h ago`;
+          const days = Math.floor(hours / 24);
+          if (days < 7) return `${days}d ago`;
+          if (days < 30) return `${Math.floor(days / 7)}w ago`;
+          return friendlyDate(dateStr);
+        } catch {
+          return friendlyDate(dateStr);
+        }
+      }
+
+      function getScoreClass(score) {
+        if (score == null || isNaN(Number(score))) return "na";
+        const n = Number(score);
+        if (n >= 75) return "high";
+        if (n >= 50) return "mid";
+        return "low";
+      }
+
+      function getTypeClass(type) {
+        const map = {
+          Technical: "technical",
+          Behavioral: "behavioral",
+          HR: "hr",
+          Mixed: "mixed",
+        };
+        return map[type] || "mixed";
+      }
+
+      function renderSessionCard(session) {
+        const score =
+          session.overall_score != null ? session.overall_score : session.score;
+        const scoreClass = getScoreClass(score);
+        const scoreDisplay = score != null ? score : "—";
+        const type = session.type || session.interview_type || "Mixed";
+        const status = (session.status || "Completed").toLowerCase();
+        const sessionId = session.id || session.interview_id || "";
+
+        return `
+          <div class="history-card" data-id="${sessionId}" data-type="${type}" data-status="${status}">
+            <div class="flex items-start gap-4">
+              <div class="score-ring ${scoreClass}">${scoreDisplay}</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="text-base font-bold truncate" style="color:#f1f5f9">${session.role || "Unknown Role"}</h3>
+                  <span class="tag ${getTypeClass(type)}">${type}</span>
+                  <span class="tag ${status === "completed" ? "completed" : "partial"}">${session.status || "Completed"}</span>
+                </div>
+                <div class="history-meta">
+                  <span><i class="fas fa-calendar-alt"></i> ${friendlyDate(session.date || session.created_at || session.timestamp)}</span>
+                  <span><i class="fas fa-clock"></i> ${session.duration != null ? session.duration + " min" : session.total_questions ? session.total_questions + " questions" : ""}</span>
+                  <span><i class="fas fa-layer-group"></i> ${session.difficulty || session.level || "—"}</span>
+                  <span><i class="fas fa-question-circle"></i> ${session.questions_answered != null ? session.questions_answered + "/" + (session.total_questions || "?") : ""}</span>
+                </div>
+                <div class="actions">
+                  <a
+                    href="report.html?interview_id=${encodeURIComponent(sessionId)}"
+                    class="action-btn primary"
+                  >
+                    <i class="fas fa-file-alt"></i> ${session.status === "completed" ? "View Report" : "Partial Report"}
+                  </a>
+                  <button
+                    type="button"
+                    class="action-btn secondary"
+                    data-action="replay"
+                    data-id="${sessionId}"
+                  >
+                    <i class="fas fa-redo"></i> Replay
+                  </button>
+                  <button
+                    type="button"
+                    class="action-btn danger"
+                    data-action="delete"
+                    data-id="${sessionId}"
+                  >
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderHistory() {
+        if (isLoading) return;
+        let sessions = [...filteredSessions];
+        if (sortOrder === "newest") {
+          sessions.sort(
+            (a, b) =>
+              new Date(b.date || b.created_at || 0) -
+              new Date(a.date || a.created_at || 0),
+          );
+        } else if (sortOrder === "oldest") {
+          sessions.sort(
+            (a, b) =>
+              new Date(a.date || a.created_at || 0) -
+              new Date(b.date || b.created_at || 0),
+          );
+        } else if (sortOrder === "score") {
+          sessions.sort((a, b) => {
+            const sa = a.overall_score != null ? a.overall_score : a.score || 0;
+            const sb = b.overall_score != null ? b.overall_score : b.score || 0;
+            return sb - sa;
+          });
+        } else if (sortOrder === "role") {
+          sessions.sort((a, b) => (a.role || "").localeCompare(b.role || ""));
+        }
+
+        const visible = sessions.slice(0, page * pageSize);
+        historyList.innerHTML = visible.length
+          ? visible.map(renderSessionCard).join("")
+          : "";
+
+        if (visible.length < sessions.length) {
+          loadMoreWrap.classList.remove("hidden");
+        } else {
+          loadMoreWrap.classList.add("hidden");
+        }
+
+        if (filteredSessions.length === 0) {
+          historyList.classList.add("hidden");
+          emptyState.classList.remove("hidden");
+          loadMoreWrap.classList.add("hidden");
+        } else {
+          historyList.classList.remove("hidden");
+          emptyState.classList.add("hidden");
+        }
+
+        bindCardActions();
+      }
+
+      function bindCardActions() {
+        document.querySelectorAll(".action-btn[data-action]").forEach((btn) => {
+          btn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+            if (action === "replay") {
+              const confirmed = confirm(
+                "Start a new interview with the same settings?",
+              );
+              if (confirmed) {
+                try {
+                  const res = await window.preplineFetch(
+                    `${API_BASE_URL}/api/sessions/${encodeURIComponent(id)}`,
+                  );
+                  if (res.ok) {
+                    const data = await res.json();
+                    const session = data.session || data;
+                    localStorage.setItem(
+                      "prepline_setup",
+                      JSON.stringify({
+                        role: session.role,
+                        difficulty: session.difficulty,
+                        type: session.type || session.interview_type,
+                        language: session.language || "english",
+                        communication_context:
+                          session.communication_context || "neutral",
+                      }),
+                    );
+                    localStorage.setItem(
+                      "prepline_total_questions",
+                      String(session.total_questions || 12),
+                    );
+                    localStorage.setItem("interviewRole", session.role);
+                    localStorage.setItem(
+                      "interviewDifficulty",
+                      session.difficulty,
+                    );
+                  }
+                } catch {}
+                window.location.href = "index.html";
+              }
+            }
+            if (action === "delete") {
+              const confirmed = confirm("Delete this session permanently?");
+              if (!confirmed) return;
+              try {
+                const res = await window.preplineFetch(
+                  `${API_BASE_URL}/api/sessions/${encodeURIComponent(id)}`,
+                  { method: "DELETE" },
+                );
+                if (res.ok || res.status === 204) {
+                  allSessions = allSessions.filter((s) => {
+                    const sid = s.id || s.interview_id || "";
+                    return sid !== id;
+                  });
+                  applyFilter();
+                } else {
+                  alert("Failed to delete. Please try again.");
+                }
+              } catch {
+                allSessions = allSessions.filter((s) => {
+                  const sid = s.id || s.interview_id || "";
+                  return sid !== id;
+                });
+                applyFilter();
+              }
+            }
+          });
+        });
+      }
+
+      async function loadSessions() {
+        if (isLoading) return;
+        isLoading = true;
+        loadingState.classList.remove("hidden");
+        historyList.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        errorState.classList.add("hidden");
+        loadMoreWrap.classList.add("hidden");
+
+        try {
+          const res = await window.preplineFetch(
+            `${API_BASE_URL}/api/sessions?page=${page}&page_size=${pageSize}&interview_id=${encodeURIComponent(interviewId || "")}`,
+          );
+          let data = {};
+          try {
+            data = await res.json();
+          } catch (_) {}
+          if (!res.ok)
+            throw new Error(
+              data.detail || data.message || "Unable to load sessions.",
+            );
+
+          const sessions = data.sessions || data.items || data.data || [];
+          allSessions = page === 1 ? sessions : [...allSessions, ...sessions];
+          applyFilter();
+          loadingState.classList.add("hidden");
+        } catch (err) {
+          loadingState.classList.add("hidden");
+          errorState.classList.remove("hidden");
+          if (errorText)
+            errorText.textContent = err.message || "Please try again.";
+        } finally {
+          isLoading = false;
+        }
+      }
+
+      function applyFilter() {
+        if (currentFilter === "all") {
+          filteredSessions = [...allSessions];
+        } else if (
+          ["Technical", "Behavioral", "HR", "Mixed"].includes(currentFilter)
+        ) {
+          filteredSessions = allSessions.filter(
+            (s) => (s.type || s.interview_type || "Mixed") === currentFilter,
+          );
+        } else if (currentFilter === "Completed") {
+          filteredSessions = allSessions.filter((s) => {
+            const status = (s.status || "Completed").toLowerCase();
+            return (
+              status === "completed" ||
+              status === "complete" ||
+              status === "done"
+            );
+          });
+        } else if (currentFilter === "Partial") {
+          filteredSessions = allSessions.filter((s) => {
+            const status = (s.status || "Completed").toLowerCase();
+            return (
+              status !== "completed" &&
+              status !== "complete" &&
+              status !== "done"
+            );
+          });
+        }
+        page = 1;
+        renderHistory();
+      }
+
+      retryBtn?.addEventListener("click", () => {
+        page = 1;
+        allSessions = [];
+        loadSessions();
+      });
+
+      filterBtn?.addEventListener("click", () => {
+        filterBar.classList.toggle("hidden");
+      });
+
+      document.querySelectorAll(".filter-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-chip")
+            .forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          currentFilter = chip.dataset.filter;
+          applyFilter();
+        });
+      });
+
+      sortBtn?.addEventListener("click", () => {
+        const orders = ["newest", "oldest", "score", "role"];
+        const labels = {
+          newest: "Newest first",
+          oldest: "Oldest first",
+          score: "Highest score",
+          role: "By role",
+        };
+        const currentIndex = orders.indexOf(sortOrder);
+        const nextIndex = (currentIndex + 1) % orders.length;
+        sortOrder = orders[nextIndex];
+        sortBtn.innerHTML = `<i class="fas fa-sort text-xs"></i> ${labels[sortOrder]}`;
+        renderHistory();
+      });
+
+      loadMoreBtn?.addEventListener("click", () => {
+        page++;
+        loadSessions();
+      });
+
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+      loadSessions();
+    </script>
+  </body>
+</html>

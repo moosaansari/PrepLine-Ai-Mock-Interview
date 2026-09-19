@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0f1a" />
+    <title>Prepline — Interview Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+
+    <style id="prepline-dark-blue-theme">
+      html,
+      body {
+        background: #0a0f1a !important;
+        color: #e2e8f0 !important;
+      }
+      body {
+        font-family: 'Source Sans 3', Inter, system-ui, sans-serif !important;
+      }
+      nav,
+      .nav,
+      .interview-nav,
+      .history-nav,
+      .report-nav {
+        background: rgba(10, 15, 26, 0.92) !important;
+        border-color: #1e293b !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28) !important;
+      }
+      .nav a,
+      .nav-links a,
+      .nav-brand,
+      .mobile-menu a,
+      .history-nav a,
+      .report-nav a {
+        color: #f1f5f9 !important;
+      }
+      .nav-links a:hover,
+      .mobile-menu a:hover,
+      .history-nav a:hover,
+      .report-nav a:hover {
+        color: #60a5fa !important;
+      }
+      .card,
+      .history-card,
+      .empty-card,
+      .section-card,
+      .question-item,
+      .interview-shell,
+      .interview-aside,
+      .report-card {
+        background: #111827 !important;
+        color: #e2e8f0 !important;
+        border-color: #1e293b !important;
+      }
+      input,
+      select,
+      textarea {
+        background: #0d1421 !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+      }
+      button.primary,
+      .btn,
+      .primary-btn,
+      .history-cta,
+      .report-btn {
+        background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #1d4ed8 100%) !important;
+        color: #ffffff !important;
+        border-color: #3b82f6 !important;
+      }
+      .ghost-btn,
+      .secondary-btn {
+        background: transparent !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      .muted,
+      .sub,
+      .subtitle,
+      .history-subtitle,
+      .body-copy,
+      .tiny,
+      .switch,
+      .back,
+      .section-head p,
+      .feature p,
+      .steps p {
+        color: #94a3b8 !important;
+      }
+      .eyebrow,
+      .accent,
+      .report-arrow,
+      .question-score {
+        color: #60a5fa !important;
+      }
+      footer {
+        background: #0a0f1a !important;
+        border-color: #1e293b !important;
+        color: #64748b !important;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-[#0a0f1a] text-white font-['Source_Sans_3',Inter,sans-serif]">
+    <div class="noise"></div>
+
+    <header
+      class="h-20 border-b border-white/5 flex items-center justify-between px-5 lg:px-10 report-nav"
+    >
+      <a href="index.html" class="text-xl font-extrabold tracking-tight">
+        PREP<span class="text-blue-400">LINE</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:block text-right">
+          <div class="text-[10px] tracking-widest text-gray-500">
+            INTERVIEW REPORT
+          </div>
+          <div id="pageTitle" class="text-sm font-semibold">Report</div>
+        </div>
+        <a
+          href="index.html"
+          class="px-4 py-2 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition"
+        >
+          Home
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-5 py-8 interview-main">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <div
+            class="text-xs uppercase tracking-[.2em] text-blue-400 font-semibold"
+          >
+            AI Interview Report
+          </div>
+          <h1 class="text-2xl md:text-3xl font-bold mt-1">Your Performance</h1>
+          <p id="reportRole" class="text-sm text-gray-400 mt-1">
+            Technical Interview — Software Engineer
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            id="printBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition flex items-center gap-2"
+          >
+            <i class="fas fa-print text-xs"></i> Print
+          </button>
+          <button
+            id="exportBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition flex items-center gap-2"
+          >
+            <i class="fas fa-download text-xs"></i> Export
+          </button>
+          <button
+            id="shareBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-sm text-gray-300 hover:bg-white/5 transition flex items-center gap-2"
+          >
+            <i class="fas fa-share-alt text-xs"></i> Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div
+        id="loadingState"
+        class="rounded-3xl p-12 md:p-20 text-center border border-white/5 bg-[#111827]/60"
+      >
+        <div class="flex justify-center mb-5">
+          <div class="flex gap-2">
+            <span
+              class="inline-block w-3 h-3 rounded-full"
+              style="background: #3b82f6; animation: reportDot 1.2s ease-in-out infinite;"
+            ></span>
+            <span
+              class="inline-block w-3 h-3 rounded-full"
+              style="background: #3b82f6; animation: reportDot 1.2s ease-in-out 0.2s infinite;"
+            ></span>
+            <span
+              class="inline-block w-3 h-3 rounded-full"
+              style="background: #3b82f6; animation: reportDot 1.2s ease-in-out 0.4s infinite;"
+            ></span>
+          </div>
+        </div>
+        <div class="text-lg font-semibold" style="color: #f1f5f9">
+          Generating your AI report
+        </div>
+        <div class="text-sm mt-2" style="color: #94a3b8">
+          PREPLINE is analysing your answers and compiling scores
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div
+        id="errorState"
+        class="hidden rounded-3xl p-8 md:p-12 text-center border border-red-500/15 bg-red-500/5"
+      >
+        <div class="text-4xl mb-4">&#9888;</div>
+        <div class="text-xl font-bold mb-2" style="color: #f1f5f9">
+          Could not load your report
+        </div>
+        <p id="errorText" class="text-sm max-w-md mx-auto" style="color: #94a3b8">
+          Something went wrong while fetching the report. Please try again or go back to your sessions.
+        </p>
+        <div class="flex justify-center gap-3 mt-6">
+          <button
+            id="retryBtn"
+            type="button"
+            class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold transition hover:opacity-90"
+            style="background: #3b82f6; color: #ffffff"
+          >
+            <i class="fas fa-redo mr-2"></i> Retry
+          </button>
+          <a
+            href="history.html"
+            class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+          >
+            <i class="fas fa-arrow-left mr-2"></i> Back to History
+          </a>
+        </div>
+      </div>
+
+      <!-- Empty -->
+      <div
+        id="emptyState"
+        class="hidden rounded-3xl p-12 md:p-20 text-center border border-white/5 bg-[#111827]/60"
+      >
+        <div
+          class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"
+        >
+          <i class="fas fa-file-alt text-blue-400 text-2xl"></i>
+        </div>
+        <h2 class="text-xl font-bold mb-2">No report found</h2>
+        <p class="text-sm text-gray-400 max-w-md mx-auto mb-6">
+          The interview link you opened doesn't have a report yet. It may still be generating, or the link might be incorrect.
+        </p>
+        <div class="flex justify-center gap-3">
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold transition hover:opacity-90"
+            style="background: #3b82f6; color: #ffffff"
+          >
+            Start a new interview
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+          <a
+            href="history.html"
+            class="inline-flex items-center rounded-xl px-6 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+          >
+            View history
+          </a>
+        </div>
+      </div>
+
+      <!-- Report Content -->
+      <div id="reportContent" class="hidden" style="animation: reportReveal 0.6s ease both;">
+
+        <!-- Score Overview -->
+        <div
+          class="rounded-3xl p-6 md:p-8 mb-4 border border-white/5 backdrop-blur-xl"
+          style="background: #111827"
+        >
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="flex items-center gap-6">
+              <div class="text-center">
+                <div
+                  id="overallScore"
+                  class="font-extrabold"
+                  style="font-size: 72px; letter-spacing: -0.05em; color: #60a5fa; font-family: Manrope, sans-serif; line-height: 1;"
+                >
+                  —
+                </div>
+                <div class="text-xs uppercase tracking-widest mt-1" style="color: #94a3b8">
+                  Overall Score
+                </div>
+                <div class="text-xs mt-1" style="color: #64748b">out of 100</div>
+              </div>
+              <div class="hidden md:block w-px h-20 bg-white/5"></div>
+              <div>
+                <div class="text-xs uppercase tracking-widest mb-1" style="color: #60a5fa">
+                  Grade
+                </div>
+                <div id="gradeLabel" class="text-2xl font-bold" style="color: #f1f5f9">
+                  —
+                </div>
+                <div id="gradeFeedback" class="text-sm mt-1 max-w-md" style="color: #94a3b8">
+                  —
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+              <button
+                id="viewTranscriptBtn"
+                type="button"
+                class="inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+              >
+                <i class="fas fa-transcript mr-2"></i> Transcript
+              </button>
+              <button
+                id="startReviewBtn"
+                type="button"
+                class="inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold transition hover:opacity-90"
+                style="background: #3b82f6; color: #ffffff"
+              >
+                <i class="fas fa-redo mr-2"></i> Review Interview
+              </button>
+            </div>
+          </div>
+          <div class="mt-6 grid grid-cols-5 gap-3">
+            <div class="text-center">
+              <div
+                id="scoreTechnical"
+                class="text-xl font-extrabold"
+                style="color: #f1f5f9; font-family: Manrope, sans-serif;"
+              >
+                —
+              </div>
+              <div class="text-[10px] uppercase tracking-widest mt-1" style="color: #94a3b8">Technical</div>
+              <div class="mt-2 h-1.5 rounded-full" style="background: #1a2436">
+                <div id="barTechnical" class="h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #60a5fa, #3b82f6); width: 0%"></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div
+                id="scoreCommunication"
+                class="text-xl font-extrabold"
+                style="color: #f1f5f9; font-family: Manrope, sans-serif;"
+              >
+                —
+              </div>
+              <div class="text-[10px] uppercase tracking-widest mt-1" style="color: #94a3b8">Communication</div>
+              <div class="mt-2 h-1.5 rounded-full" style="background: #1a2436">
+                <div id="barCommunication" class="h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #60a5fa, #3b82f6); width: 0%"></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div
+                id="scoreConfidence"
+                class="text-xl font-extrabold"
+                style="color: #f1f5f9; font-family: Manrope, sans-serif;"
+              >
+                —
+              </div>
+              <div class="text-[10px] uppercase tracking-widest mt-1" style="color: #94a3b8">Confidence</div>
+              <div class="mt-2 h-1.5 rounded-full" style="background: #1a2436">
+                <div id="barConfidence" class="h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #60a5fa, #3b82f6); width: 0%"></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div
+                id="scoreClarity"
+                class="text-xl font-extrabold"
+                style="color: #f1f5f9; font-family: Manrope, sans-serif;"
+              >
+                —
+              </div>
+              <div class="text-[10px] uppercase tracking-widest mt-1" style="color: #94a3b8">Clarity</div>
+              <div class="mt-2 h-1.5 rounded-full" style="background: #1a2436">
+                <div id="barClarity" class="h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #60a5fa, #3b82f6); width: 0%"></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div
+                id="scoreProfessionalism"
+                class="text-xl font-extrabold"
+                style="color: #f1f5f9; font-family: Manrope, sans-serif;"
+              >
+                —
+              </div>
+              <div class="text-[10px] uppercase tracking-widest mt-1" style="color: #94a3b8">Professionalism</div>
+              <div class="mt-2 h-1.5 rounded-full" style="background: #1a2436">
+                <div id="barProfessionalism" class="h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #60a5fa, #3b82f6); width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Observations -->
+        <div
+          class="rounded-3xl p-6 md:p-8 mb-4 border border-white/5"
+          style="background: #111827"
+        >
+          <h2 class="text-lg font-bold mb-1" style="color: #f1f5f9">
+            Delivery Observations
+          </h2>
+          <p class="text-xs mb-5" style="color: #94a3b8">
+            Transcript-based estimates only
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div
+              class="rounded-xl p-4"
+              style="background: #0d1421; border: 1px solid #1a2436"
+            >
+              <div
+                class="text-xs uppercase tracking-widest"
+                style="color: #94a3b8"
+              >
+                Communication Style
+              </div>
+              <div id="deliveryCommStyle" class="text-sm font-semibold mt-2" style="color: #f1f5f9">
+                —
+              </div>
+            </div>
+            <div
+              class="rounded-xl p-4"
+              style="background: #0d1421; border: 1px solid #1a2436"
+            >
+              <div
+                class="text-xs uppercase tracking-widest"
+                style="color: #94a3b8"
+              >
+                Confidence Level
+              </div>
+              <div id="deliveryConfLevel" class="text-sm font-semibold mt-2" style="color: #f1f5f9">
+                —
+              </div>
+            </div>
+            <div
+              class="rounded-xl p-4"
+              style="background: #0d1421; border: 1px solid #1a2436"
+            >
+              <div
+                class="text-xs uppercase tracking-widest"
+                style="color: #94a3b8"
+              >
+                Nervousness
+              </div>
+              <div id="deliveryNervous" class="text-sm font-semibold mt-2" style="color: #f1f5f9">
+                —
+              </div>
+            </div>
+            <div
+              class="rounded-xl p-4"
+              style="background: #0d1421; border: 1px solid #1a2436"
+            >
+              <div
+                class="text-xs uppercase tracking-widest"
+                style="color: #94a3b8"
+              >
+                Tone
+              </div>
+              <div id="deliveryTone" class="text-sm font-semibold mt-2" style="color: #f1f5f9">
+                —
+              </div>
+            </div>
+          </div>
+          <div id="fillerWordsWrap" class="hidden mt-4 rounded-xl p-4" style="background: #0d1421; border: 1px solid #1a2436">
+            <div class="text-xs uppercase tracking-widest mb-1" style="color: #94a3b8">
+              Filler Words Noticed
+            </div>
+            <div id="fillerWords" class="text-sm font-semibold" style="color: #60a5fa">
+              —
+            </div>
+          </div>
+          <div
+            id="transcriptPreviewBox"
+            class="hidden mt-4 rounded-xl p-4"
+            style="background: #0d1421; border: 1px solid #1a2436"
+          >
+            <div class="text-xs uppercase tracking-widest mb-2" style="color: #94a3b8">
+              Transcript Excerpt
+            </div>
+            <p id="transcriptPreview" class="text-sm leading-relaxed" style="color: #cbd5e1"></p>
+          </div>
+        </div>
+
+        <!-- Two Column: Summary + Communication -->
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div
+            class="rounded-3xl p-6 md:p-8 border border-white/5"
+            style="background: #111827"
+          >
+            <h2 class="text-lg font-bold mb-3" style="color: #f1f5f9">
+              <i class="fas fa-sparkles mr-2 text-blue-400"></i>AI Summary
+            </h2>
+            <p id="summaryText" class="text-sm leading-7" style="color: #94a3b8">
+              Loading...
+            </p>
+          </div>
+          <div
+            class="rounded-3xl p-6 md:p-8 border border-white/5"
+            style="background: #111827"
+          >
+            <h2 class="text-lg font-bold mb-3" style="color: #f1f5f9">
+              <i class="fas fa-comments mr-2 text-blue-400"></i>Communication &amp; Professionalism
+            </h2>
+            <p id="commFeedback" class="text-sm leading-7" style="color: #94a3b8">
+              Loading...
+            </p>
+          </div>
+        </div>
+
+        <!-- Strengths & Improvements -->
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div
+            class="rounded-3xl p-6 md:p-8 border border-white/5"
+            style="background: #111827"
+          >
+            <h2 class="text-lg font-bold mb-4" style="color: #22c55e">
+              <i class="fas fa-thumbs-up mr-2"></i>Strengths
+            </h2>
+            <ul
+              id="reportStrengths"
+              class="space-y-3"
+              style="list-style: none; padding: 0; margin: 0"
+            ></ul>
+          </div>
+          <div
+            class="rounded-3xl p-6 md:p-8 border border-white/5"
+            style="background: #111827"
+          >
+            <h2 class="text-lg font-bold mb-4" style="color: #f87171">
+              <i class="fas fa-exclamation-triangle mr-2"></i>Areas to Improve
+            </h2>
+            <ul
+              id="reportWeaknesses"
+              class="space-y-3"
+              style="list-style: none; padding: 0; margin: 0"
+            ></ul>
+          </div>
+        </div>
+
+        <!-- Action Plan -->
+        <div
+          class="rounded-3xl p-6 md:p-8 mb-4 border border-white/5"
+          style="background: #111827"
+        >
+          <h2 class="text-lg font-bold mb-1" style="color: #f1f5f9">
+            <i class="fas fa-list-check mr-2 text-blue-400"></i>Action Plan
+          </h2>
+          <p class="text-xs mb-5" style="color: #94a3b8">
+            Targeted next steps based on your performance
+          </p>
+          <ul
+            id="actionPlan"
+            class="space-y-3"
+            style="list-style: none; padding: 0; margin: 0"
+          ></ul>
+        </div>
+
+        <!-- Question-by-Question -->
+        <div
+          class="rounded-3xl p-6 md:p-8 mb-4 border border-white/5"
+          style="background: #111827"
+        >
+          <div class="flex items-end justify-between mb-5">
+            <div>
+              <h2 class="text-lg font-bold" style="color: #f1f5f9">
+                <i class="fas fa-list-ol mr-2 text-blue-400"></i>Question-by-Question Review
+              </h2>
+              <p class="text-xs mt-1" style="color: #94a3b8">
+                Your answers and AI feedback for each question
+              </p>
+            </div>
+            <div id="qCount" class="text-xs" style="color: #94a3b8">
+              Loading...
+            </div>
+          </div>
+          <div id="questionBreakdown" class="space-y-3"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-wrap gap-3 mt-2 pb-8">
+          <button
+            id="reviewInterviewBtn"
+            type="button"
+            class="report-btn inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold transition hover:opacity-90"
+            style="background: #3b82f6; color: #ffffff"
+          >
+            <i class="fas fa-redo mr-2"></i> Review Interview
+          </button>
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+          >
+            <i class="fas fa-plus mr-2"></i> New Interview
+          </a>
+          <a
+            href="history.html"
+            class="inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border border-white/10 text-gray-300 hover:bg-white/5 transition"
+          >
+            <i class="fas fa-chart-bar mr-2"></i> Dashboard
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="border-t border-white/5 py-8 px-5 lg:px-10 flex justify-between items-center gap-4 flex-wrap"
+      style="background: #0a0f1a"
+    >
+      <a href="index.html" class="text-lg font-extrabold tracking-tight">
+        PREP<span class="text-blue-400">LINE</span>
+      </a>
+      <span class="text-xs" style="color: #64748b">
+        &copy; 2026 Prepline. All rights reserved.
+      </span>
+      <div class="flex gap-6">
+        <a href="index.html" class="text-xs transition hover:text-white" style="color: #94a3b8">Home</a>
+        <a href="history.html" class="text-xs transition hover:text-white" style="color: #94a3b8">History</a>
+        <a href="index.html" class="text-xs transition hover:text-white" style="color: #94a3b8">Start Interview</a>
+      </div>
+    </footer>
+
+    <style>
+      @keyframes reportReveal {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes reportDot {
+        0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+        40% { transform: scale(1); opacity: 1; }
+      }
+      @keyframes scoreFill {
+        from { width: 0; }
+      }
+      .report-btn {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        transform: translateY(0);
+        transition: transform 0.18s cubic-bezier(0.22, 0.68, 0, 1), box-shadow 0.18s cubic-bezier(0.22, 0.68, 0, 1), filter 0.18s ease;
+        box-shadow: 0 4px 0 #1d4ed8, 0 6px 14px rgba(59, 130, 246, 0.28);
+      }
+      .report-btn::before {
+        content: "";
+        position: absolute;
+        top: 0; left: -120%;
+        width: 60%; height: 100%;
+        background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.42) 50%, transparent 100%);
+        transform: skewX(-20deg);
+        transition: left 0.65s cubic-bezier(0.22, 0.68, 0, 1);
+        pointer-events: none; z-index: 1;
+      }
+      .report-btn:hover::before { left: 130%; }
+      .report-btn:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.08);
+        box-shadow: 0 6px 0 #1d4ed8, 0 10px 24px rgba(59, 130, 246, 0.42);
+      }
+      .report-btn:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 #1d4ed8, 0 2px 6px rgba(59, 130, 246, 0.3);
+        transition-duration: 0.06s;
+      }
+      .strength-item, .weakness-item, .action-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.6;
+        transition: transform 0.18s cubic-bezier(0.22, 0.68, 0, 1);
+      }
+      .strength-item {
+        background: rgba(34, 197, 94, 0.06);
+        border: 1px solid rgba(34, 197, 94, 0.12);
+        color: #94a3b8;
+      }
+      .strength-item:hover { transform: translateX(4px); }
+      .weakness-item {
+        background: rgba(239, 68, 68, 0.06);
+        border: 1px solid rgba(239, 68, 68, 0.12);
+        color: #94a3b8;
+      }
+      .weakness-item:hover { transform: translateX(4px); }
+      .action-item {
+        background: rgba(59, 130, 246, 0.06);
+        border: 1px solid rgba(59, 130, 246, 0.12);
+        color: #94a3b8;
+      }
+      .action-item:hover { transform: translateX(4px); }
+      .strength-item i { color: #22c55e; margin-top: 3px; flex-shrink: 0; }
+      .weakness-item i { color: #f87171; margin-top: 3px; flex-shrink: 0; }
+      .action-item i { color: #60a5fa; margin-top: 3px; flex-shrink: 0; }
+      .question-review {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #1a2436;
+        background: #0a0f1a;
+        transition: border-color 0.2s ease;
+      }
+      .question-review:hover { border-color: #2f3f5c; }
+      .question-review summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        background: #111827;
+        transition: background 0.18s ease;
+      }
+      .question-review summary:hover { background: #1a2332; }
+      .question-review summary::-webkit-details-marker { display: none; }
+      .question-review-body {
+        padding: 16px 20px;
+        border-top: 1px solid #1a2436;
+      }
+      .score-badge {
+        font-weight: 800;
+        font-family: Manrope, sans-serif;
+        font-size: 22px;
+        letter-spacing: -0.03em;
+        flex-shrink: 0;
+      }
+      .label-tag {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #94a3b8;
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
+      .content-text {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #94a3b8;
+        margin: 0 0 12px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .content-text:last-child { margin-bottom: 0; }
+
+      @media (max-width: 640px) {
+        .grid.md\:grid-cols-2 { grid-template-columns: 1fr; }
+        .grid.grid-cols-2\.md\:grid-cols-4 { grid-template-columns: 1fr 1fr; }
+        #overallScore { font-size: 52px !important; }
+      }
+
+      @media print {
+        .report-nav, footer, .actions, .flex.flex-wrap, header { display: none !important; }
+        body { background: #fff !important; color: #000 !important; }
+        .rounded-3xl, .rounded-xl, .rounded-2xl { border: 1px solid #ddd !important; background: #fff !important; }
+      }
+    </style>
+
+    <script>
+      "use strict";
+
+      const API_BASE_URL = window.API_BASE_URL;
+
+      const interviewId =
+        new URLSearchParams(window.location.search).get("interview_id") ||
+        localStorage.getItem("prepline_last_interview_id") ||
+        "";
+
+      const pageTitle = document.getElementById("pageTitle");
+      const reportRole = document.getElementById("reportRole");
+      const loadingState = document.getElementById("loadingState");
+      const errorState = document.getElementById("errorState");
+      const emptyState = document.getElementById("emptyState");
+      const errorText = document.getElementById("errorText");
+      const retryBtn = document.getElementById("retryBtn");
+      const reportContent = document.getElementById("reportContent");
+      const printBtn = document.getElementById("printBtn");
+      const exportBtn = document.getElementById("exportBtn");
+      const shareBtn = document.getElementById("shareBtn");
+      const reviewInterviewBtn = document.getElementById("reviewInterviewBtn");
+      const viewTranscriptBtn = document.getElementById("viewTranscriptBtn");
+      const startReviewBtn = document.getElementById("startReviewBtn");
+
+      function showLoading() {
+        loadingState.classList.remove("hidden");
+        errorState.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        reportContent.classList.add("hidden");
+      }
+      function showError(msg) {
+        loadingState.classList.add("hidden");
+        errorState.classList.remove("hidden");
+        emptyState.classList.add("hidden");
+        reportContent.classList.add("hidden");
+        if (errorText) errorText.textContent = msg;
+      }
+      function showEmpty() {
+        loadingState.classList.add("hidden");
+        errorState.classList.add("hidden");
+        emptyState.classList.remove("hidden");
+        reportContent.classList.add("hidden");
+      }
+      function showContent() {
+        loadingState.classList.add("hidden");
+        errorState.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        reportContent.classList.remove("hidden");
+      }
+
+      function getGrade(score) {
+        if (score == null || isNaN(Number(score))) return { letter: "—", feedback: "No score available." };
+        const n = Number(score);
+        if (n >= 90) return { letter: "Outstanding", feedback: "Exceptional performance across all areas. Interview-ready." };
+        if (n >= 80) return { letter: "Excellent", feedback: "Strong answers with minor gaps. Very close to interview-ready." };
+        if (n >= 70) return { letter: "Good", feedback: "Solid foundation. Focus on the flagged areas to sharpen your delivery." };
+        if (n >= 60) return { letter: "Fair", feedback: "Decent attempt. Target the key weaknesses and practice structured answers." };
+        if (n >= 50) return { letter: "Developing", feedback: "Foundational understanding present. Practice structure and clarity." };
+        if (n >= 35) return { letter: "Needs Work", feedback: "Significant gaps. Focus on fundamentals and structured practice." };
+        return { letter: "Critical", feedback: "Major improvement needed. Start with basic concepts and mock interviews." };
+      }
+
+      function getScoreColor(score) {
+        if (score == null || isNaN(Number(score))) return "#94a3b8";
+        const n = Number(score);
+        if (n >= 80) return "#22c55e";
+        if (n >= 60) return "#f59e0b";
+        if (n >= 40) return "#f97316";
+        return "#ef4444";
+      }
+
+      async function loadReport() {
+        if (!interviewId) { showEmpty(); return; }
+        showLoading();
+        try {
+          const res = await window.preplineFetch(
+            `${API_BASE_URL}/api/reports/${encodeURIComponent(interviewId)}`
+          );
+          let data = {};
+          try { data = await res.json(); } catch (_) {}
+          if (!res.ok) throw new Error(data.detail || data.error?.message || "Unable to load your report.");
+
+          const r = data.report || {};
+
+          if (pageTitle) pageTitle.textContent = "Report";
+          if (reportRole) {
+            reportRole.textContent = `${r.type || r.interview_type || "Interview"} — ${r.role || "Unknown Role"}`;
+          }
+
+          const overall = r.overall_score;
+          const overallEl = document.getElementById("overallScore");
+          if (overallEl) {
+            overallEl.textContent = overall != null ? overall : "—";
+            overallEl.style.color = getScoreColor(overall);
+          }
+
+          const grade = getGrade(overall);
+          const gradeEl = document.getElementById("gradeLabel");
+          if (gradeEl) gradeEl.textContent = grade.letter;
+          const gradeFb = document.getElementById("gradeFeedback");
+          if (gradeFb) gradeFb.textContent = grade.feedback;
+
+          function setScoreAndBar(valId, barId, val) {
+            const el = document.getElementById(valId);
+            const bar = document.getElementById(barId);
+            if (el) el.textContent = val != null ? val : "—";
+            if (bar) {
+              const width = val != null ? `${Math.max(0, Math.min(100, Number(val)))}%` : "0%";
+              setTimeout(() => { bar.style.width = width; }, 200);
+            }
+          }
+
+          setScoreAndBar("scoreTechnical", "barTechnical", r.technical_score);
+          setScoreAndBar("scoreCommunication", "barCommunication", r.communication_score);
+          setScoreAndBar("scoreConfidence", "barConfidence", r.confidence_score);
+          setScoreAndBar("scoreClarity", "barClarity", r.clarity_score);
+          setScoreAndBar("scoreProfessionalism", "barProfessionalism", r.professionalism_score);
+
+          const summaryEl = document.getElementById("summaryText");
+          if (summaryEl) summaryEl.textContent = r.summary || r.interviewer_summary || "No summary available.";
+          const commEl = document.getElementById("commFeedback");
+          if (commEl) commEl.textContent = r.communication_feedback || "No communication feedback.";
+
+          const dCS = document.getElementById("deliveryCommStyle"); if (dCS) dCS.textContent = r.communication_style || "Limited evidence";
+          const dCL = document.getElementById("deliveryConfLevel"); if (dCL) dCL.textContent = r.confidence_level || "Limited evidence";
+          const dN = document.getElementById("deliveryNervous"); if (dN) dN.textContent = r.nervousness_level || "Limited evidence";
+          const dT = document.getElementById("deliveryTone"); if (dT) dT.textContent = r.tone || "Limited evidence";
+
+          const fw = document.getElementById("fillerWords");
+          const fwWrap = document.getElementById("fillerWordsWrap");
+          const fillers = Array.isArray(r.filler_words) ? r.filler_words : [];
+          if (fillers.length) { if (fw) fw.textContent = fillers.join(", "); if (fwWrap) fwWrap.classList.remove("hidden"); }
+          else { if (fwWrap) fwWrap.classList.add("hidden"); }
+
+          const txp = document.getElementById("transcriptPreview");
+          const txpBox = document.getElementById("transcriptPreviewBox");
+          if (r.transcript_excerpt) { if (txp) txp.textContent = r.transcript_excerpt; if (txpBox) txpBox.classList.remove("hidden"); }
+          else { if (txpBox) txpBox.classList.add("hidden"); }
+
+          _renderList("reportStrengths", r.strengths, "strength");
+          _renderList("reportWeaknesses", r.weaknesses || r.improvement_areas, "weakness");
+          _renderList("actionPlan", r.suggestions || r.action_plan, "action");
+
+          _renderQuestionBreakdown(r.question_breakdown);
+
+          const qCountEl = document.getElementById("qCount");
+          if (qCountEl) {
+            const qs = Array.isArray(r.question_breakdown) ? r.question_breakdown : [];
+            qCountEl.textContent = `${qs.length} question${qs.length !== 1 ? "s" : ""} answered`;
+          }
+
+          if (viewTranscriptBtn) {
+            viewTranscriptBtn.onclick = () => {
+              const txpBox = document.getElementById("transcriptPreviewBox");
+              if (txpBox) {
+                txpBox.scrollIntoView({ behavior: "smooth", block: "center" });
+                txpBox.style.borderColor = "#3b82f6";
+                setTimeout(() => { txpBox.style.borderColor = "#1a2436"; }, 2000);
+              }
+            };
+          }
+          if (startReviewBtn) {
+            startReviewBtn.onclick = () => { window.location.href = "index.html"; };
+          }
+          if (reviewInterviewBtn) {
+            reviewInterviewBtn.onclick = () => { window.location.href = "index.html"; };
+          }
+          if (printBtn) printBtn.onclick = () => window.print();
+          if (exportBtn) {
+            exportBtn.onclick = async () => {
+              try {
+                const res = await window.preplineFetch(`${API_BASE_URL}/api/reports/${encodeURIComponent(interviewId)}/export`, { method: "GET" });
+                if (res.ok) {
+                  const blob = await res.blob();
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `prepline-report-${interviewId}.pdf`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                } else { alert("Export failed. Please try again."); }
+              } catch { alert("Export failed. Please check your connection."); }
+            };
+          }
+          if (shareBtn) {
+            shareBtn.onclick = async () => {
+              const url = window.location.href;
+              try {
+                if (navigator.share) { await navigator.share({ title: "Prepline Report", text: `My Prepline interview report — ${r.role || ""}`, url }); }
+                else if (navigator.clipboard) { await navigator.clipboard.writeText(url); alert("Link copied to clipboard!"); }
+              } catch {}
+            };
+          }
+
+          showContent();
+        } catch (err) {
+          showError(err.message || "Could not load your report.");
+        }
+      }
+
+      function _renderList(containerId, items, type) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        el.innerHTML = "";
+        const arr = Array.isArray(items) ? items : [];
+        if (!arr.length) {
+          el.innerHTML = `<div class="text-sm p-3 rounded-xl" style="color: #94a3b8; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04)">No data available.</div>`;
+          return;
+        }
+        arr.forEach((item) => {
+          const li = document.createElement("div");
+          li.className = `${type}-item`;
+          const iconClass = type === "strength" ? "fa-check-circle" : type === "weakness" ? "fa-circle-xmark" : "fa-circle-arrow-right";
+          li.innerHTML = `<i class="fas ${iconClass}"></i><span>${String(item)}</span>`;
+          el.appendChild(li);
+        });
+      }
+
+      function _renderQuestionBreakdown(items) {
+        const container = document.getElementById("questionBreakdown");
+        if (!container) return;
+        container.innerHTML = "";
+        const qs = Array.isArray(items) ? items : [];
+        if (!qs.length) {
+          container.innerHTML = `<p class="text-sm p-4 rounded-xl" style="color: #94a3b8; background: rgba(255,255,255,0.02)">No individual answer data was saved.</p>`;
+          return;
+        }
+        qs.forEach((item, idx) => {
+          const score = Number(item.score);
+          const scoreText = Number.isFinite(score) ? `${score}/100` : "—";
+          const scoreColor = getScoreColor(score);
+          const q = String(item.question || "").trim() || "Question text unavailable.";
+          const a = String(item.answer || "").trim() || "No transcript saved.";
+          const f = String(item.feedback || "").trim() || "No AI feedback.";
+
+          const details = document.createElement("details");
+          details.className = "question-review";
+          if (idx === 0) details.open = true;
+          details.innerHTML = `
+            <summary>
+              <span style="color: #f1f5f9; font-weight: 600; font-size: 15px;">
+                Question ${Number(item.question_number) || idx + 1}
+              </span>
+              <span class="score-badge" style="color: ${scoreColor}">${scoreText}</span>
+            </summary>
+            <div class="question-review-body">
+              <div class="label-tag">Question</div>
+              <p class="content-text">${_escapeHtml(q)}</p>
+              <div class="label-tag">Your Answer</div>
+              <p class="content-text">${_escapeHtml(a)}</p>
+              <div class="label-tag">AI Feedback</div>
+              <p class="content-text">${_escapeHtml(f)}</p>
+            </div>
+          `;
+          container.appendChild(details);
+        });
+      }
+
+      function _escapeHtml(str) {
+        if (!str) return "";
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      retryBtn?.addEventListener("click", loadReport);
+
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+
+      if (interviewId && interviewId !== "undefined" && interviewId !== "null") {
+        loadReport();
+      } else {
+        showEmpty();
+      }
+    </script>
+  </body>
+</html>

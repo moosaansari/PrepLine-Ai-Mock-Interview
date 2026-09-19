@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0f1a" />
+    <title>Prepline — Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+
+    <style id="prepline-dark-blue-theme">
+      html,
+      body {
+        background: #0a0f1a !important;
+        color: #e2e8f0 !important;
+      }
+      body {
+        font-family: "Source Sans 3", Inter, system-ui, sans-serif !important;
+      }
+      nav,
+      .nav,
+      .auth-nav {
+        background: rgba(10, 15, 26, 0.92) !important;
+        border-color: #1e293b !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28) !important;
+      }
+      .nav a,
+      .nav-links a,
+      .nav-brand,
+      .mobile-menu a,
+      .auth-nav a {
+        color: #f1f5f9 !important;
+      }
+      .nav-links a:hover,
+      .mobile-menu a:hover,
+      .auth-nav a:hover {
+        color: #60a5fa !important;
+      }
+      .card,
+      .history-card,
+      .empty-card,
+      .section-card,
+      .question-item,
+      .interview-shell,
+      .interview-aside,
+      .report-card,
+      .auth-card {
+        background: #111827 !important;
+        color: #e2e8f0 !important;
+        border-color: #1e293b !important;
+      }
+      input,
+      select,
+      textarea {
+        background: #0d1421 !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+      }
+      button.primary,
+      .btn,
+      .primary-btn,
+      .history-cta,
+      .auth-btn {
+        background: linear-gradient(
+          180deg,
+          #60a5fa 0%,
+          #3b82f6 55%,
+          #1d4ed8 100%
+        ) !important;
+        color: #ffffff !important;
+        border-color: #3b82f6 !important;
+      }
+      .ghost-btn,
+      .secondary-btn {
+        background: transparent !important;
+        color: #e2e8f0 !important;
+        border-color: #2f3f5c !important;
+      }
+      .muted,
+      .sub,
+      .subtitle,
+      .history-subtitle,
+      .body-copy,
+      .tiny,
+      .switch,
+      .back,
+      .section-head p,
+      .feature p,
+      .steps p {
+        color: #94a3b8 !important;
+      }
+      .eyebrow,
+      .accent,
+      .report-arrow,
+      .question-score {
+        color: #60a5fa !important;
+      }
+      footer {
+        background: #0a0f1a !important;
+        border-color: #1e293b !important;
+        color: #64748b !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-[#0a0f1a] text-white font-['Source_Sans_3',Inter,sans-serif]"
+  >
+    <div class="noise"></div>
+
+    <nav class="nav auth-nav">
+      <a href="index.html" class="brand" aria-label="Prepline home">
+        <span class="brand-dot"></span>Prepline
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#features">Result</a>
+        <a href="history.html">History</a>
+      </div>
+      <div class="nav-actions">
+        <button type="button" class="ghost-btn" id="loginBtn">Log in</button>
+        <button type="button" class="primary-btn small" id="startTop">
+          Start a practice interview
+        </button>
+      </div>
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        ☰
+      </button>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-5 py-8 interview-main">
+      <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
+        <!-- Left: Marketing Copy -->
+        <div>
+          <div class="hero-tag">
+            <span class="brand-dot" style="width: 6px; height: 6px"></span>
+            AI-powered interview practice
+          </div>
+          <h1>Practice out loud before the interview that counts.</h1>
+          <p>
+            You talk, Prepline listens, and it tells you straight what to fix:
+            how you structured your answer, where you rambled, and what an
+            interviewer would actually push back on.
+          </p>
+
+          <div class="hero-actions" style="margin-bottom: var(--space-12)">
+            <button type="button" class="primary-btn" id="ctaAuth">
+              Get Started
+            </button>
+            <button type="button" class="play-btn" id="demoBtn">
+              <span class="play">▶</span> Watch a 90-second demo
+            </button>
+          </div>
+
+          <div class="role-chips">
+            <span class="chip-label">Quick start:</span>
+            <button
+              type="button"
+              class="role-chip"
+              data-role="Software Engineer"
+              data-level="2–5 years"
+              data-type="Technical"
+            >
+              Software Engineer
+            </button>
+            <button
+              type="button"
+              class="role-chip"
+              data-role="Frontend Engineer"
+              data-level="2–5 years"
+              data-type="Technical"
+            >
+              Frontend
+            </button>
+            <button
+              type="button"
+              class="role-chip"
+              data-role="Product Manager"
+              data-level="2–5 years"
+              data-type="Mixed"
+            >
+              Product Manager
+            </button>
+            <button
+              type="button"
+              class="role-chip"
+              data-role="Engineering Lead"
+              data-level="5+ years"
+              data-type="Behavioral"
+            >
+              Behavioral
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Auth Card -->
+        <div
+          class="auth-card"
+          style="
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+          "
+        >
+          <div
+            id="authError"
+            class="hidden mb-4 p-3 rounded-xl border border-red-500/20 bg-red-500/10 text-sm text-red-300"
+          >
+            <p id="authErrorText"></p>
+            <button
+              type="button"
+              id="authErrorDismiss"
+              class="mt-2 text-xs underline opacity-70 hover:opacity-100"
+            >
+              Dismiss
+            </button>
+          </div>
+
+          <!-- Login Form -->
+          <div id="loginForm">
+            <div class="eyebrow">Welcome back</div>
+            <h2
+              style="
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin: 4px 0 24px;
+                letter-spacing: -0.01em;
+              "
+            >
+              Sign in to Prepline
+            </h2>
+
+            <form id="loginFormEl">
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                "
+              >
+                Email
+                <input
+                  id="loginEmail"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  autocomplete="email"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                  margin-top: 16px;
+                "
+              >
+                Password
+                <input
+                  id="loginPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  required
+                  autocomplete="current-password"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <div
+                class="flex items-center justify-between mt-3 mb-6"
+                style="font-size: 12px"
+              >
+                <label
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    color: #94a3b8;
+                    cursor: pointer;
+                  "
+                >
+                  <input
+                    id="rememberMe"
+                    type="checkbox"
+                    style="accent-color: #3b82f6"
+                  />
+                  Remember me
+                </label>
+                <a
+                  href="#"
+                  id="forgotPasswordLink"
+                  style="color: #60a5fa; text-decoration: none"
+                  >Forgot password?</a
+                >
+              </div>
+
+              <button
+                type="submit"
+                class="auth-btn primary-btn full"
+                style="width: 100%; margin-top: 8px"
+              >
+                Sign In
+              </button>
+            </form>
+
+            <div
+              style="
+                text-align: center;
+                margin-top: 20px;
+                font-size: 14px;
+                color: #94a3b8;
+              "
+            >
+              Don't have an account?
+              <button
+                type="button"
+                id="showRegister"
+                class="auth-btn"
+                style="
+                  background: none;
+                  border: none;
+                  color: #60a5fa;
+                  font-weight: 600;
+                  cursor: pointer;
+                  padding: 0;
+                  font-size: 14px;
+                "
+              >
+                Sign up
+              </button>
+            </div>
+
+            <div
+              style="
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+              "
+            >
+              <div style="flex: 1; height: 1px; background: #1e293b"></div>
+              <span style="font-size: 12px; color: #64748b"
+                >or continue with</span
+              >
+              <div style="flex: 1; height: 1px; background: #1e293b"></div>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; gap: 12px">
+              <button
+                type="button"
+                id="googleSignIn"
+                class="ghost-btn secondary-btn"
+                style="width: 100%; justify-content: center"
+              >
+                <i class="fab fa-google" style="color: #ea4335"></i> Google
+              </button>
+              <button
+                type="button"
+                id="githubSignIn"
+                class="ghost-btn secondary-btn"
+                style="width: 100%; justify-content: center"
+              >
+                <i class="fab fa-github" style="color: #e2e8f0"></i> GitHub
+              </button>
+            </div>
+          </div>
+
+          <!-- Register Form -->
+          <div id="registerForm" class="hidden">
+            <div class="eyebrow">New here?</div>
+            <h2
+              style="
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin: 4px 0 24px;
+                letter-spacing: -0.01em;
+              "
+            >
+              Create your account
+            </h2>
+
+            <form id="registerFormEl">
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                "
+              >
+                Full Name
+                <input
+                  id="registerName"
+                  type="text"
+                  placeholder="Jane Doe"
+                  required
+                  autocomplete="name"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                  margin-top: 16px;
+                "
+              >
+                Email
+                <input
+                  id="registerEmail"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  autocomplete="email"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                  margin-top: 16px;
+                "
+              >
+                Password
+                <input
+                  id="registerPassword"
+                  type="password"
+                  placeholder="Min. 8 characters"
+                  required
+                  autocomplete="new-password"
+                  minlength="8"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <label
+                style="
+                  display: block;
+                  color: #cbd5e1;
+                  font-size: 12px;
+                  font-weight: 600;
+                  margin-bottom: 12px;
+                  margin-top: 16px;
+                "
+              >
+                Confirm Password
+                <input
+                  id="registerConfirm"
+                  type="password"
+                  placeholder="Re-enter password"
+                  required
+                  autocomplete="new-password"
+                  minlength="8"
+                  style="
+                    display: block;
+                    width: 100%;
+                    margin-top: 8px;
+                    background: #0d1421;
+                    border: 1px solid #1e293b;
+                    color: #e2e8f0;
+                    border-radius: 8px;
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    font-family: var(--font);
+                    outline: none;
+                  "
+                />
+              </label>
+
+              <div style="margin-top: 16px">
+                <label
+                  style="
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 8px;
+                    color: #94a3b8;
+                    font-size: 12px;
+                    cursor: pointer;
+                    line-height: 1.5;
+                  "
+                >
+                  <input
+                    id="agreeTerms"
+                    type="checkbox"
+                    required
+                    style="
+                      accent-color: #3b82f6;
+                      margin-top: 3px;
+                      flex-shrink: 0;
+                    "
+                  />
+                  I agree to the
+                  <a href="#" style="color: #60a5fa; text-decoration: none"
+                    >Terms of Service</a
+                  >
+                  and
+                  <a href="#" style="color: #60a5fa; text-decoration: none"
+                    >Privacy Policy</a
+                  >
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="auth-btn primary-btn full"
+                style="width: 100%; margin-top: 20px"
+              >
+                Create Account
+              </button>
+            </form>
+
+            <div
+              style="
+                text-align: center;
+                margin-top: 20px;
+                font-size: 14px;
+                color: #94a3b8;
+              "
+            >
+              Already have an account?
+              <button
+                type="button"
+                id="showLogin"
+                class="auth-btn"
+                style="
+                  background: none;
+                  border: none;
+                  color: #60a5fa;
+                  font-weight: 600;
+                  cursor: pointer;
+                  padding: 0;
+                  font-size: 14px;
+                "
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+
+          <!-- Logged In State -->
+          <div id="loggedInState" class="hidden">
+            <div class="eyebrow">You're signed in</div>
+            <h2
+              style="
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin: 4px 0 8px;
+                letter-spacing: -0.01em;
+              "
+            >
+              Welcome back!
+            </h2>
+            <p
+              id="userNameDisplay"
+              style="font-size: 14px; color: #94a3b8; margin-bottom: 24px"
+            >
+              —
+            </p>
+
+            <div
+              style="
+                padding: 16px;
+                border-radius: 12px;
+                background: rgba(59, 130, 246, 0.06);
+                border: 1px solid rgba(59, 130, 246, 0.15);
+                margin-bottom: 20px;
+              "
+            >
+              <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px">
+                Session Token
+              </div>
+              <div
+                id="tokenDisplay"
+                style="
+                  font-size: 12px;
+                  color: #60a5fa;
+                  font-family: monospace;
+                  word-break: break-all;
+                  max-height: 60px;
+                  overflow-y: auto;
+                "
+              ></div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <button
+                type="button"
+                id="goToSetup"
+                class="auth-btn primary-btn full"
+              >
+                <i class="fas fa-microphone mr-2"></i> Start Interview
+              </button>
+              <button
+                type="button"
+                id="goToHistory"
+                class="ghost-btn secondary-btn"
+                style="width: 100%; justify-content: center"
+              >
+                <i class="fas fa-clock-rotate-left mr-2"></i> View History
+              </button>
+              <button
+                type="button"
+                id="logoutBtn"
+                class="auth-btn"
+                style="
+                  background: none;
+                  border: none;
+                  color: #ef4444;
+                  cursor: pointer;
+                  padding: 10px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  width: 100%;
+                "
+              >
+                <i class="fas fa-sign-out-alt mr-2"></i> Sign Out
+              </button>
+            </div>
+          </div>
+
+          <!-- Social Auth Modal -->
+          <div
+            id="socialAuthLoading"
+            class="hidden"
+            style="text-align: center; padding: 32px 0"
+          >
+            <div
+              class="loading-dot"
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3b82f6, #60a5fa);
+                margin: 0 auto 16px;
+                animation: pulse 1.3s ease-in-out infinite;
+              "
+            ></div>
+            <div class="text-base font-semibold" style="color: #f1f5f9">
+              Connecting...
+            </div>
+            <div class="text-sm mt-1" style="color: #94a3b8">
+              Please wait while we authenticate you
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="py-6 px-5 lg:px-10 flex justify-center items-center gap-4 flex-wrap"
+      style="background: #0a0f1a; border-top: 1px solid #1e293b"
+    >
+      <a href="index.html" class="text-sm font-extrabold tracking-tight">
+        PREP<span class="text-blue-400">LINE</span>
+      </a>
+      <span class="text-xs" style="color: #64748b"
+        >&copy; 2026 Prepline. All rights reserved.</span
+      >
+      <div class="flex gap-4">
+        <a
+          href="index.html"
+          class="text-xs transition hover:text-white"
+          style="color: #94a3b8"
+          >Home</a
+        >
+        <a
+          href="history.html"
+          class="text-xs transition hover:text-white"
+          style="color: #94a3b8"
+          >History</a
+        >
+      </div>
+    </footer>
+
+    <style>
+      @keyframes pulse {
+        50% {
+          transform: scale(1.4);
+          opacity: 0.4;
+        }
+      }
+      @keyframes reportReveal {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .auth-btn {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        transform: translateY(0);
+        transition:
+          transform 0.18s cubic-bezier(0.22, 0.68, 0, 1),
+          box-shadow 0.18s cubic-bezier(0.22, 0.68, 0, 1),
+          filter 0.18s ease;
+      }
+      .auth-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          115deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.42) 50%,
+          transparent 100%
+        );
+        transform: skewX(-20deg);
+        transition: left 0.65s cubic-bezier(0.22, 0.68, 0, 1);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .auth-btn:hover::before {
+        left: 130%;
+      }
+      .auth-btn:hover:not(:disabled) {
+        filter: brightness(1.08);
+      }
+      .auth-btn:active:not(:disabled) {
+        transform: translateY(2px);
+        transition-duration: 0.06s;
+      }
+      .auth-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        filter: none;
+      }
+      #loginForm input,
+      #registerForm input {
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      #loginForm input:focus,
+      #registerForm input:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+      }
+      @media (max-width: 900px) {
+        .grid.lg\:grid-cols-2 {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+    </style>
+
+    <script>
+      "use strict";
+
+      // ===== Config Defaults =====
+      const DEFAULT_API_BASE_URL = "http://localhost:8000";
+      const DEFAULT_WS_BASE_URL = "ws://localhost:8000";
+
+      // Set global config with fallbacks
+      window.API_BASE_URL = window.API_BASE_URL || DEFAULT_API_BASE_URL;
+      window.WS_BASE_URL = window.WS_BASE_URL || DEFAULT_WS_BASE_URL;
+
+      // ===== preplineFetch wrapper =====
+      window.preplineFetch = async function (url, options = {}) {
+        const headers = {
+          "Content-Type": "application/json",
+          ...(options.headers || {}),
+        };
+
+        const token = localStorage.getItem("prepline_auth_token");
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        const config = {
+          ...options,
+          headers,
+        };
+
+        // Remove body for GET/HEAD/DELETE if no body needed
+        if (
+          !config.body &&
+          ["GET", "HEAD", "DELETE"].includes(config.method?.toUpperCase())
+        ) {
+          delete config.body;
+        }
+
+        try {
+          const response = await fetch(url, config);
+
+          // Handle 401 Unauthorized — clear auth state
+          if (response.status === 401) {
+            localStorage.removeItem("prepline_auth_token");
+            localStorage.removeItem("prepline_auth_user");
+            const currentPage = window.location.pathname.split("/").pop();
+            if (currentPage !== "index.html" && currentPage !== "") {
+              // Only redirect if not on login page
+              if (currentPage !== "auth.html") {
+                // Silently clear, don't force redirect during auth page
+              }
+            }
+          }
+
+          return response;
+        } catch (error) {
+          console.error("preplineFetch error:", error);
+          throw error;
+        }
+      };
+
+      // ===== Auth State =====
+      const authTokenKey = "prepline_auth_token";
+      const authUserKey = "prepline_auth_user";
+
+      function getAuthToken() {
+        return localStorage.getItem(authTokenKey);
+      }
+      function setAuthToken(token) {
+        if (token) localStorage.setItem(authTokenKey, token);
+        else localStorage.removeItem(authTokenKey);
+      }
+      function getAuthUser() {
+        try {
+          const raw = localStorage.getItem(authUserKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+      function setAuthUser(user) {
+        if (user) localStorage.setItem(authUserKey, JSON.stringify(user));
+        else localStorage.removeItem(authUserKey);
+      }
+      function isAuthenticated() {
+        return !!getAuthToken();
+      }
+
+      // ===== DOM References =====
+      const loginFormEl = document.getElementById("loginFormEl");
+      const registerFormEl = document.getElementById("registerFormEl");
+      const loginForm = document.getElementById("loginForm");
+      const registerForm = document.getElementById("registerForm");
+      const loggedInState = document.getElementById("loggedInState");
+      const socialAuthLoading = document.getElementById("socialAuthLoading");
+      const authError = document.getElementById("authError");
+      const authErrorText = document.getElementById("authErrorText");
+      const authErrorDismiss = document.getElementById("authErrorDismiss");
+      const userNameDisplay = document.getElementById("userNameDisplay");
+      const tokenDisplay = document.getElementById("tokenDisplay");
+      const loginEmail = document.getElementById("loginEmail");
+      const loginPassword = document.getElementById("loginPassword");
+      const registerName = document.getElementById("registerName");
+      const registerEmail = document.getElementById("registerEmail");
+      const registerPassword = document.getElementById("registerPassword");
+      const registerConfirm = document.getElementById("registerConfirm");
+      const rememberMe = document.getElementById("rememberMe");
+      const agreeTerms = document.getElementById("agreeTerms");
+      const googleSignInBtn = document.getElementById("googleSignIn");
+      const githubSignInBtn = document.getElementById("githubSignIn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const goToSetup = document.getElementById("goToSetup");
+      const goToHistory = document.getElementById("goToHistory");
+      const showRegisterBtn = document.getElementById("showRegister");
+      const showLoginBtn = document.getElementById("showLogin");
+      const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+      const ctaAuth = document.getElementById("ctaAuth");
+
+      function hideAuthError() {
+        authError?.classList.add("hidden");
+        if (authErrorText) authErrorText.textContent = "";
+      }
+      function showAuthError(message) {
+        if (authErrorText) authErrorText.textContent = message;
+        authError?.classList.remove("hidden");
+      }
+
+      function switchForm(showRegister) {
+        hideAuthError();
+        if (showRegister) {
+          loginForm?.classList.add("hidden");
+          registerForm?.classList.remove("hidden");
+          loggedInState?.classList.add("hidden");
+        } else {
+          registerForm?.classList.add("hidden");
+          loginForm?.classList.remove("hidden");
+          loggedInState?.classList.add("hidden");
+        }
+      }
+
+      function showLoggedIn(user) {
+        loginForm?.classList.add("hidden");
+        registerForm?.classList.add("hidden");
+        loggedInState?.classList.remove("hidden");
+        if (userNameDisplay) {
+          userNameDisplay.textContent = `Signed in as ${user.email || user.name || "your account"}`;
+        }
+        const token = getAuthToken();
+        if (tokenDisplay && token) {
+          // Show partial token for security
+          const visible =
+            token.substring(0, 12) + "..." + token.substring(token.length - 6);
+          tokenDisplay.textContent = visible;
+        }
+      }
+
+      function showLoadingSocial() {
+        loginForm?.classList.add("hidden");
+        registerForm?.classList.add("hidden");
+        loggedInState?.classList.add("hidden");
+        socialAuthLoading?.classList.remove("hidden");
+      }
+
+      // ===== API Calls =====
+      async function apiLogin(email, password, remember) {
+        const res = await window.preplineFetch(
+          `${window.API_BASE_URL}/api/auth/login`,
+          {
+            method: "POST",
+            body: JSON.stringify({ email, password, remember: !!remember }),
+            signal: AbortSignal.timeout(15000),
+          },
+        );
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok)
+          throw new Error(
+            data.detail ||
+              data.message ||
+              "Login failed. Please check your credentials.",
+          );
+        return data;
+      }
+
+      async function apiRegister(name, email, password) {
+        const res = await window.preplineFetch(
+          `${window.API_BASE_URL}/api/auth/register`,
+          {
+            method: "POST",
+            body: JSON.stringify({ name, email, password }),
+            signal: AbortSignal.timeout(15000),
+          },
+        );
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok)
+          throw new Error(
+            data.detail ||
+              data.message ||
+              "Registration failed. Please try again.",
+          );
+        return data;
+      }
+
+      async function apiSocialLogin(provider) {
+        const res = await window.preplineFetch(
+          `${window.API_BASE_URL}/api/auth/${provider}`,
+          {
+            method: "POST",
+            body: JSON.stringify({}),
+            signal: AbortSignal.timeout(30000),
+          },
+        );
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok)
+          throw new Error(
+            data.detail || data.message || `${provider} login failed.`,
+          );
+        return data;
+      }
+
+      async function apiLogout() {
+        try {
+          await window.preplineFetch(`${window.API_BASE_URL}/api/auth/logout`, {
+            method: "POST",
+            signal: AbortSignal.timeout(10000),
+          });
+        } catch {}
+      }
+
+      // ===== Login Handler =====
+      loginFormEl?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideAuthError();
+        const email = loginEmail?.value?.trim();
+        const password = loginPassword?.value;
+        if (!email || !password) {
+          showAuthError("Please fill in all fields.");
+          return;
+        }
+        if (password.length < 6) {
+          showAuthError("Password must be at least 6 characters.");
+          return;
+        }
+
+        const submitBtn = loginFormEl.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Signing in...";
+        }
+
+        try {
+          const data = await apiLogin(email, password, rememberMe?.checked);
+          if (data.token) setAuthToken(data.token);
+          if (data.user) setAuthUser(data.user);
+          localStorage.setItem(
+            "prepline_auth_token",
+            data.token || getAuthToken(),
+          );
+          localStorage.setItem(
+            "prepline_auth_user",
+            JSON.stringify(data.user || {}),
+          );
+          showLoggedIn(data.user || { email });
+        } catch (err) {
+          showAuthError(err.message || "Login failed.");
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Sign In";
+          }
+        }
+      });
+
+      // ===== Register Handler =====
+      registerFormEl?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideAuthError();
+        const name = registerName?.value?.trim();
+        const email = registerEmail?.value?.trim();
+        const password = registerPassword?.value;
+        const confirm = registerConfirm?.value;
+        if (!name || !email || !password || !confirm) {
+          showAuthError("Please fill in all fields.");
+          return;
+        }
+        if (password.length < 8) {
+          showAuthError("Password must be at least 8 characters.");
+          return;
+        }
+        if (password !== confirm) {
+          showAuthError("Passwords do not match.");
+          return;
+        }
+        if (agreeTerms && !agreeTerms.checked) {
+          showAuthError("Please agree to the Terms and Privacy Policy.");
+          return;
+        }
+
+        const submitBtn = registerFormEl.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Creating account...";
+        }
+
+        try {
+          const data = await apiRegister(name, email, password);
+          if (data.token) setAuthToken(data.token);
+          if (data.user) setAuthUser(data.user);
+          showLoggedIn(data.user || { name, email });
+        } catch (err) {
+          showAuthError(err.message || "Registration failed.");
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Create Account";
+          }
+        }
+      });
+
+      // ===== Social Auth =====
+      async function handleSocialLogin(provider) {
+        showLoadingSocial();
+        try {
+          const data = await apiSocialLogin(provider);
+          if (data.token) setAuthToken(data.token);
+          if (data.user) setAuthUser(data.user);
+          showLoggedIn(
+            data.user || { email: data.email || `${provider} user` },
+          );
+        } catch (err) {
+          showAuthError(
+            err.message || `${provider} login failed. Please try again.`,
+          );
+          loginForm?.classList.remove("hidden");
+          socialAuthLoading?.classList.add("hidden");
+        }
+      }
+
+      googleSignInBtn?.addEventListener("click", () =>
+        handleSocialLogin("google"),
+      );
+      githubSignInBtn?.addEventListener("click", () =>
+        handleSocialLogin("github"),
+      );
+
+      // ===== Logout =====
+      logoutBtn?.addEventListener("click", async () => {
+        if (confirm("Are you sure you want to sign out?")) {
+          await apiLogout().catch(() => {});
+          setAuthToken(null);
+          setAuthUser(null);
+          localStorage.removeItem("prepline_auth_token");
+          localStorage.removeItem("prepline_auth_user");
+          loginForm?.classList.remove("hidden");
+          registerForm?.classList.add("hidden");
+          loggedInState?.classList.add("hidden");
+          socialAuthLoading?.classList.add("hidden");
+          hideAuthError();
+          if (loginEmail) loginEmail.value = "";
+          if (loginPassword) loginPassword.value = "";
+        }
+      });
+
+      // ===== Navigation =====
+      showRegisterBtn?.addEventListener("click", () => switchForm(true));
+      showLoginBtn?.addEventListener("click", () => switchForm(false));
+      forgotPasswordLink?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const email = loginEmail?.value?.trim();
+        if (!email) {
+          showAuthError("Please enter your email first, or enter it now.");
+          loginEmail?.focus();
+          return;
+        }
+        window.open(
+          `${window.API_BASE_URL}/auth/reset-password?email=${encodeURIComponent(email)}`,
+          "_blank",
+        );
+      });
+
+      ctaAuth?.addEventListener("click", () => {
+        if (isAuthenticated()) {
+          window.location.href = "index.html";
+        } else {
+          switchForm(false);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          loginEmail?.focus();
+        }
+      });
+
+      goToSetup?.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+      goToHistory?.addEventListener("click", () => {
+        window.location.href = "history.html";
+      });
+      authErrorDismiss?.addEventListener("click", hideAuthError);
+
+      // ===== Auto-login on page load =====
+      function checkAuthOnLoad() {
+        if (isAuthenticated()) {
+          const user = getAuthUser();
+          if (user) {
+            showLoggedIn(user);
+          } else {
+            // Token exists but no user data — verify it
+            (async () => {
+              try {
+                const res = await window.preplineFetch(
+                  `${window.API_BASE_URL}/api/auth/me`,
+                  {
+                    signal: AbortSignal.timeout(10000),
+                  },
+                );
+                const data = await res.json().catch(() => ({}));
+                if (res.ok && data.user) {
+                  setAuthUser(data.user);
+                  showLoggedIn(data.user);
+                } else {
+                  setAuthToken(null);
+                  setAuthUser(null);
+                }
+              } catch {
+                setAuthToken(null);
+                setAuthUser(null);
+              }
+            })();
+          }
+        }
+      }
+      checkAuthOnLoad();
+
+      // ===== Nav patch =====
+      const menuBtn = document.getElementById("menuBtn");
+      const navLinks = document.getElementById("navLinks");
+      if (menuBtn && navLinks) {
+        menuBtn.addEventListener("click", () => {
+          const isOpen = navLinks.classList.toggle("mobile-open");
+          menuBtn.setAttribute("aria-expanded", String(isOpen));
+          menuBtn.textContent = isOpen ? "✕" : "☰";
+        });
+      }
+
+      const loginBtn = document.getElementById("loginBtn");
+      const startTop = document.getElementById("startTop");
+
+      loginBtn?.addEventListener("click", () => {
+        if (isAuthenticated()) {
+          window.location.href = "index.html";
+        } else {
+          switchForm(false);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          loginEmail?.focus();
+        }
+      });
+
+      startTop?.addEventListener("click", () => {
+        if (isAuthenticated()) {
+          window.location.href = "index.html";
+        } else {
+          switchForm(false);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          loginEmail?.focus();
+        }
+      });
+
+      // ===== Password Visibility Toggle (optional enhancement) =====
+      function addPasswordToggle(inputId, container) {
+        const input = document.getElementById(inputId);
+        if (!input || !container) return;
+        const wrapper = input.parentElement;
+        const toggleBtn = document.createElement("button");
+        toggleBtn.type = "button";
+        toggleBtn.className =
+          "absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition";
+        toggleBtn.innerHTML = '<i class="fas fa-eye text-xs"></i>';
+        toggleBtn.style.position = "absolute";
+        toggleBtn.style.right = "12px";
+        toggleBtn.style.top = "38px";
+        toggleBtn.style.zIndex = "2";
+        toggleBtn.addEventListener("click", () => {
+          const isPassword = input.type === "password";
+          input.type = isPassword ? "text" : "password";
+          toggleBtn.innerHTML = isPassword
+            ? '<i class="fas fa-eye-slash text-xs"></i>'
+            : '<i class="fas fa-eye text-xs"></i>';
+        });
+        wrapper.style.position = "relative";
+        wrapper.appendChild(toggleBtn);
+      }
+      function requireAuth(redirectTo = "auth.html") {
+        if (!isAuthenticated()) {
+          window.location.href = redirectTo;
+          return false;
+        }
+        return true;
+      }
+      window.requireAuth = requireAuth;
+      window.isAuthenticated = isAuthenticated;
+      window.getAuthToken = getAuthToken;
+      window.getAuthUser = getAuthUser;
+      window.switchAuthForm = switchForm;
+    </script>
+  </body>
+</html>
