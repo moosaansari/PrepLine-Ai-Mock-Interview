@@ -17,6 +17,7 @@ from app.routes import (
     live,
     auth,
     diagnostics,
+    sessions,
 )
 
 logging.basicConfig(
@@ -164,4 +165,6 @@ app.include_router(live.router)
 logger.info("  ✓ live")
 app.include_router(diagnostics.router)
 logger.info("  ✓ diagnostics")
+app.include_router(sessions.router)
+logger.info("  ✓ sessions")
 logger.info("All routers registered successfully.")

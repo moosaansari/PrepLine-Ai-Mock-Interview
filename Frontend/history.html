@@ -811,12 +811,21 @@
           try {
             data = await res.json();
           } catch (_) {}
-          if (!res.ok)
+          if (!res.ok) {
             throw new Error(
-              data.detail || data.message || "Unable to load sessions.",
+              data.detail || data.message || data.error?.message || "Unable to load sessions.",
             );
+          }
 
-          const sessions = data.sessions || data.items || data.data || [];
+          const sessions = Array.isArray(data.sessions)
+            ? data.sessions
+            : Array.isArray(data.items)
+              ? data.items
+              : Array.isArray(data.data)
+                ? data.data
+                : Array.isArray(data)
+                  ? data
+                  : [];
           allSessions = page === 1 ? sessions : [...allSessions, ...sessions];
           applyFilter();
           loadingState.classList.add("hidden");

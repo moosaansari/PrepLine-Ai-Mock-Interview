@@ -9,7 +9,7 @@ from app.data.question_bank import get_questions
 logger = logging.getLogger(__name__)
 
 
-MIN_INTERVIEW_QUESTIONS = 10
+MIN_INTERVIEW_QUESTIONS = 5
 MAX_INTERVIEW_QUESTIONS = 18
 DEFAULT_INTERVIEW_QUESTIONS = 12
 

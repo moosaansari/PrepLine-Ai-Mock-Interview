@@ -72,12 +72,8 @@ async def gemini_live(websocket: WebSocket):
         except (TypeError, ValueError):
             total_questions = 12
 
-        if not 10 <= total_questions <= 18:
-            await websocket.send_json({
-                "type": "error",
-                "message": "total_questions must be between 10 and 18.",
-            })
-            return
+        # PREPLINE supports any interview length from 5 to 18 questions.
+        total_questions = max(5, min(total_questions, 18))
 
         try:
             current_question_number = int(

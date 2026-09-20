@@ -1,6 +1,8 @@
 import logging
 from contextlib import asynccontextmanager
 
+from starlette.websockets import WebSocketDisconnect
+
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
@@ -476,6 +478,13 @@ Do not wait for the candidate to say hello first.
             )
 
             yield client, session
+
+    except WebSocketDisconnect:
+        # The browser closed the WebSocket while the Live session context
+        # was being cleaned up. This is a normal client-side disconnect,
+        # not a Gemini connection failure.
+        logger.info("Browser disconnected during Gemini Live session cleanup.")
+        raise
 
     except Exception as exc:
 
